@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A6LP2_app.App">
+    <Application.Resources>
+        <OnPlatform x:Key="IconsFont" x:TypeArguments="x:String">
+            <On Platform="Android" Value="fontello.ttf#Regular" />
+        </OnPlatform>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="#121212" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="LineHeight" Value="1.15" />
+        </Style>
+        <Color x:Key="Destacado">#E01070</Color>
+        <Color x:Key="BoxBg">#EDEDED</Color>
+    </Application.Resources>
+</Application>

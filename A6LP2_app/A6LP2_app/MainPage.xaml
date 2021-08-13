@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A6LP2_app.MainPage">
+
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Margin="30,10,30,10">
+            <Image x:Name="receita_img" Source="paomortadelawafer.jpg" />
+            <Label x:Name="receita_title" Text="Sanduíche mortadela c/ wafer" FontSize="Title" FontAttributes="Bold" />
+            <Grid Grid.Row="1" Grid.Column="3" Padding="30">
+                <StackLayout Orientation="Vertical">
+                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="{StaticResource Destacado}"/>
+                    <Label Text="2 min" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_duration"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Column="1" >
+                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="{StaticResource Destacado}"/>
+                    <Label Text="108 kcal" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_calories"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" Grid.Column="2">
+                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="{StaticResource Destacado}"/>
+                    <Label Text="1,9" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_rating"/>
+                </StackLayout>
+            </Grid>
+            <Label x:Name="receita_description" Text="Este sanduíche é simples, rápido de fazer e com um sabor peculiar e exótico, dada a combinação inusitada dos componentes que fazem a receita."
+                   Margin="0,50,0,15"/>
+            <Frame BackgroundColor="{StaticResource BoxBg}" CornerRadius="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Porções" FontSize="22" VerticalTextAlignment="Center"/>
+                    <Button Text="–" Grid.Column="1" x:Name="btnServingsMinus"
+                            FontAttributes="Bold"
+                            Padding="-1"
+                            FontSize="21"
+                            CornerRadius="50" 
+                            BackgroundColor="White" 
+                            TextColor="{StaticResource Destacado}" 
+                            WidthRequest="30"
+                            HeightRequest="40"
+                            Clicked="Servings_Minus"/>
+                    <Label Grid.Column="2" x:Name="_Servings" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Button Text="+" Grid.Column="3" x:Name="btnServingsPlus"
+                            FontAttributes="Bold"
+                            Padding="-1"
+                            FontSize="21"
+                            CornerRadius="50" 
+                            BackgroundColor="White" 
+                            TextColor="{StaticResource Destacado}" 
+                            WidthRequest="30"
+                            HeightRequest="40"
+                            Clicked="Servings_Plus"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
