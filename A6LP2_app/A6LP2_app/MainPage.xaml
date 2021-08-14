@@ -4,44 +4,44 @@
              x:Class="A6LP2_app.MainPage">
 
     <ScrollView>
-        <StackLayout Orientation="Vertical" Margin="30,10,30,10">
-            <Image x:Name="receita_img" Source="paomortadelawafer.jpg" />
-            <Label x:Name="receita_title" Text="Sanduíche mortadela c/ wafer" FontSize="Title" FontAttributes="Bold" />
-            <Grid Grid.Row="1" Grid.Column="3" Padding="30">
-                <StackLayout Orientation="Vertical">
-                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+        <StackLayout Orientation="Vertical">
+            <Image x:Name="receita_img" />
+            <StackLayout Orientation="Vertical" Margin="30,10,30,10">
+                <Label x:Name="receita_title"  FontSize="Title" FontAttributes="Bold" />
+                <Grid Grid.Row="1" Grid.Column="3" Padding="30">
+                    <StackLayout Orientation="Vertical">
+                        <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
                            HorizontalTextAlignment="Center" 
                            TextColor="{StaticResource Destacado}"/>
-                    <Label Text="2 min" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_duration"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" Grid.Column="1" >
-                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+                        <Label HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_duration"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Grid.Column="1" >
+                        <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
                            HorizontalTextAlignment="Center" 
                            TextColor="{StaticResource Destacado}"/>
-                    <Label Text="108 kcal" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_calories"/>
-                </StackLayout>
-                <StackLayout Orientation="Vertical" Grid.Column="2">
-                    <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
+                        <Label HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_calories"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Grid.Column="2">
+                        <Label FontSize="28" Text="" FontFamily="{StaticResource IconsFont}" 
                            HorizontalTextAlignment="Center" 
                            TextColor="{StaticResource Destacado}"/>
-                    <Label Text="1,9" HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_rating"/>
-                </StackLayout>
-            </Grid>
-            <Label x:Name="receita_description" Text="Este sanduíche é simples, rápido de fazer e com um sabor peculiar e exótico, dada a combinação inusitada dos componentes que fazem a receita."
-                   Margin="0,50,0,15"/>
-            <Frame BackgroundColor="{StaticResource BoxBg}" CornerRadius="30">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="32"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="180" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="40" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Porções" FontSize="22" VerticalTextAlignment="Center"/>
-                    <Button Text="–" Grid.Column="1" x:Name="btnServingsMinus"
+                        <Label HorizontalTextAlignment="Center" FontAttributes="Bold" x:Name="receita_rating"/>
+                    </StackLayout>
+                </Grid>
+                <Label x:Name="receita_description" Margin="0,15,0,15"/>
+                <Frame BackgroundColor="{StaticResource BoxBg}" CornerRadius="30">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="40" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Porções" FontSize="20" VerticalTextAlignment="Center"/>
+                        <Button Text="–" Grid.Column="1" x:Name="btnServingsMinus"
                             FontAttributes="Bold"
                             Padding="-1"
                             FontSize="21"
@@ -51,8 +51,8 @@
                             WidthRequest="30"
                             HeightRequest="40"
                             Clicked="Servings_Minus"/>
-                    <Label Grid.Column="2" x:Name="_Servings" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                    <Button Text="+" Grid.Column="3" x:Name="btnServingsPlus"
+                        <Label Grid.Column="2" x:Name="_Servings" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <Button Text="+" Grid.Column="3" x:Name="btnServingsPlus"
                             FontAttributes="Bold"
                             Padding="-1"
                             FontSize="21"
@@ -62,8 +62,66 @@
                             WidthRequest="30"
                             HeightRequest="40"
                             Clicked="Servings_Plus"/>
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
+                <Frame BackgroundColor="{StaticResource BoxBg}" CornerRadius="30" Margin="0,15,0,10" Padding="0">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="112" />
+                            <ColumnDefinition Width="115" />
+                            <ColumnDefinition Width="112" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="gridRecipe_ingredients" Grid.Column="0" BackgroundColor="{StaticResource Destacado}" CornerRadius="30" Padding="0" BorderColor="Transparent" >
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="IngredientsTabTapped" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="Ingredientes" TextColor="White" FontSize="16" x:Name="tabTxt_ingredients"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </Frame>
+                        <Frame x:Name="gridRecipe_tools" Grid.Column="1" BackgroundColor="{StaticResource BoxBg}" CornerRadius="30" Padding="0" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ToolsTabTapped" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="Utensílios" TextColor="#808080" FontSize="16" x:Name="tabTxt_tools"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </Frame>
+                        <Frame x:Name="gridRecipe_steps" Grid.Column="2" BackgroundColor="{StaticResource BoxBg}" CornerRadius="30" Padding="0" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="StepsTabTapped" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="Passos" TextColor="#808080" FontSize="16" x:Name="tabTxt_steps"
+                                   VerticalTextAlignment="Center"
+                                   HorizontalTextAlignment="Center"/>
+                        </Frame>
+                    </Grid>
+                </Frame>
+                <CollectionView ItemsSource="{Binding Ingredients}"
+                                ItemsLayout="VerticalGrid, 3">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <Frame HeightRequest="60"
+                                       WidthRequest="60"
+                                       CornerRadius="20">
+                                    <Image Source="{Binding ImgUrl}" />
+                                </Frame>
+                                <Label Text="{Binding Name}" 
+                                       FontSize="16"
+                                       Margin="2"/>
+                                <Label Text="{Binding MeasureDescription}" 
+                                       FontSize="14" 
+                                       TextColor="#808080" 
+                                       Margin="2"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 
