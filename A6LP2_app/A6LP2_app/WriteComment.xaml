@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A6LP2_app.WriteComment">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="10" >
+            <Frame WidthRequest="120"
+                   HeightRequest="200"
+                   CornerRadius="10"
+                   Padding="5,10,5,10"
+                   Margin="10,50,10,20">
+                <StackLayout Orientation="Vertical">
+                    <Entry x:Name="author" Placeholder="Seu Nome" PlaceholderColor="#808080" MaxLength="30">
+                        <Entry.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>CapitalizeSentence</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Entry.Keyboard>
+                    </Entry>
+                    <Editor x:Name="comment" Placeholder="Comentário" PlaceholderColor="#808080" MaxLength="70" AutoSize="TextChanges">
+                        <Editor.Keyboard>
+                            <Keyboard x:FactoryMethod="Create">
+                                <x:Arguments>
+                                    <KeyboardFlags>Suggestions,CapitalizeSentence</KeyboardFlags>
+                                </x:Arguments>
+                            </Keyboard>
+                        </Editor.Keyboard>
+                    </Editor>
+                </StackLayout>
+            </Frame>
+            <Button Text="Enviar" 
+                    BackgroundColor="{StaticResource Destacado}"
+                    TextColor="White"
+                    Clicked="Send"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -12,6 +12,7 @@
             <Setter Property="LineHeight" Value="1.15" />
         </Style>
         <Color x:Key="Destacado">#E01070</Color>
+        <Color x:Key="DestacadoFaded">#F060A0</Color>
         <Color x:Key="BoxBg">#EDEDED</Color>
     </Application.Resources>
 </Application>

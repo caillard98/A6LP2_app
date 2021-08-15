@@ -12,15 +12,15 @@ namespace A6LP2_app
     public partial class MainPage : ContentPage
     {
         int servings = 1;
-        public Recipe Receita { get; private set; }
-        public List<Ingredient> Ingredients { get; private set; }
+        public Recipe Receita = Constants.SelectedRecipe;
+        public IList<ViewIngredient> ViewIngredients;
+        public List<RecipeIngredient> RecipeIngredients = Constants.RecipeIngredients;
         public MainPage()
         {
             InitializeComponent();
             FillRecipeData();
-            Ingredients = Receita.Ingredients;
-
             UpdateServingsControls();
+            txtComments.Text = Constants.RecipeComments.Count + " comentários";
             BindingContext = this;
         }
 
@@ -51,15 +51,17 @@ namespace A6LP2_app
                 btnServingsMinus.IsEnabled = true;
                 btnServingsPlus.IsEnabled = true;
             }
-            Ingredients.ForEach(item =>
+            var recipeIngredients = RecipeIngredients;
+            recipeIngredients.ForEach(item =>
             {
-                item.UpdateMeasureMultiplier(servings);
+                item.UpdateMeasures(servings);
             });
-            
+            RecipeIngredients = recipeIngredients;
+            ViewIngredients = FillIngredientData(RecipeIngredients);
+            collectionIngredients.ItemsSource = ViewIngredients;
         }
         private void FillRecipeData()
         {
-            Receita = new Recipe();
             receita_img.Source = Receita.ImgUrl;
             receita_title.Text = Receita.Name;
             receita_duration.Text = Receita.PrepDuration.ToString() + " min";
@@ -67,7 +69,19 @@ namespace A6LP2_app
             receita_rating.Text = Receita.Rating;
             receita_description.Text = Receita.Description;
         }
-
+        private static List<ViewIngredient> FillIngredientData(List<RecipeIngredient> recipeIngredients)
+        {
+            var _ViewIngredients = new List<ViewIngredient>();
+            foreach (var ingredient in Constants.Ingredients)
+            {
+                var description = recipeIngredients
+                    .Where(ri => ri.Ingredient_ID == ingredient.ID)
+                    .Select(ri => ri.MeasureDescription).FirstOrDefault();
+                ViewIngredient _ingredient = new ViewIngredient(ingredient.Name, ingredient.ImgUrl, description);
+                _ViewIngredients.Add(_ingredient);
+            }
+            return _ViewIngredients;
+        }
         private void IngredientsTabTapped(object sender, EventArgs e)
         {
             gridRecipe_ingredients.BackgroundColor = (Color)Application.Current.Resources["Destacado"];
@@ -85,7 +99,7 @@ namespace A6LP2_app
             tabTxt_ingredients.TextColor = Color.FromHex("#808080");
             tabTxt_steps.TextColor = Color.FromHex("#808080");
             tabTxt_tools.TextColor = Color.White;
-            DisplayAlert("Alerta", "Função não implementada!", "OK");
+            NotImplementedAlert();
         }
         private void StepsTabTapped(object sender, EventArgs e)
         {
@@ -95,7 +109,29 @@ namespace A6LP2_app
             tabTxt_ingredients.TextColor = Color.FromHex("#808080");
             tabTxt_steps.TextColor = Color.White;
             tabTxt_tools.TextColor = Color.FromHex("#808080");
+            NotImplementedAlert();
+        }
+        private void NotImplementedAlert(object sender, EventArgs e)
+        {
             DisplayAlert("Alerta", "Função não implementada!", "OK");
+        }
+        private void NotImplementedAlert()
+        {
+            DisplayAlert("Alerta", "Função não implementada!", "OK");
+        }
+        private List<Comment> LoadComments()
+        {
+            return new List<Comment>()
+            {
+                new Comment()
+            };
+        }
+        private void ShowComments(object sender, EventArgs e)
+        {
+            CommentsPage.Comments = Constants.RecipeComments;
+            var commentsPage = new CommentsPage();
+            commentsPage.UpdateContext();
+            Navigation.PushAsync(commentsPage);
         }
     }
 }

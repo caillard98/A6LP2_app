@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A6LP2_app.CommentsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="txtNoContent" Text="Nenhum comentário...  Seja o primeiro!" IsVisible="false" TextColor="#808080" FontAttributes="Italic" HorizontalTextAlignment="Center" Margin="30,30,30,0" FontSize="30"/>
+            <CollectionView x:Name="viewComments"
+                            ItemsLayout="VerticalList"
+                            HeightRequest="540">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" Padding="10">
+                            <Frame WidthRequest="120"
+                                   CornerRadius="10"
+                                   Padding="5,10,5,10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100" />
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Grid.Row="0" Source="default_avatar.jpg" Scale="0.8" VerticalOptions="Start" HorizontalOptions="Start"/>
+                                    <Label Grid.Column="0" Grid.Row="1" Text="{Binding Author}" 
+                                           VerticalTextAlignment="Start" 
+                                           HorizontalTextAlignment="Center" 
+                                           FontSize="16"
+                                           TextColor="{StaticResource DestacadoFaded}"
+                                           FontAttributes="Bold"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Text}"
+                                           FontSize="16"
+                                           Margin="5" 
+                                           LineBreakMode="CharacterWrap"/>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding DateString}" 
+                                           VerticalTextAlignment="End" 
+                                           HorizontalTextAlignment="End" 
+                                           Margin="0,0,10,0" 
+                                           FontSize="14" 
+                                           TextColor="#808080"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame BackgroundColor="{StaticResource Destacado}" BorderColor="Transparent" Padding="10" Margin="90,0,90,10" CornerRadius="20">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="WriteComment" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+                <Label Text="Escrever comentário" 
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

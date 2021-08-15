@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="A6LP2_app.Launcher"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Receitas" HorizontalTextAlignment="Center" FontSize="Title" Margin="0,15,0,15"/>
+            <CollectionView x:Name="recipesView" 
+                            ItemsLayout="VerticalList"
+                            SelectionMode="Single"
+                            SelectionChanged="RecipeTapped">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="{StaticResource BoxBg}" Padding="5">
+                            <Grid Padding="10,10,30,10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                    Source="{Binding ImgUrl}"
+                                    Aspect="AspectFill"
+                                    HeightRequest="100"
+                                    WidthRequest="100"/>
+                                <Label Grid.Column="1"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold" 
+                                    FontSize="20"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="End"/>
+                                <Label Grid.Row="1"
+                                    Grid.Column="1"
+                                    TextColor="#808080"
+                                    Text="{Binding Rating}"
+                                    FontAttributes="Italic"
+                                    HorizontalTextAlignment="End"
+                                    VerticalOptions="End" 
+                                    Margin="0,0,25,0"/>
+                                <Label Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="" FontFamily="{StaticResource IconsFont}" 
+                                    TextColor="#808080"
+                                    HorizontalTextAlignment="End"
+                                    VerticalOptions="End"
+                                    Margin="0,0,0,4"/>
+                            </Grid>
+                        </Frame>                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
