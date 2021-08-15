@@ -68,7 +68,7 @@ namespace A6LP2_app
                 Name = "Gelatina Panasonic",
                 ImgUrl = "gelatinapanasonic.jpg",
                 Rating = "1,1",
-                Calories = 2000,
+                Calories = 6800,
                 Description = "É... Bem exótica! Isso sem contar o sabor, que é de matar!",
                 PrepDuration = 90
             });
