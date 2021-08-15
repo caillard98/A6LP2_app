@@ -31,6 +31,7 @@ namespace A6LP2_app
             MessagingCenter.Subscribe<WriteComment>(this, "Back", (writeSender) =>
             {
                 viewComments.ItemsSource = Comments;
+                txtNoContent.IsVisible = false;
             });
             Navigation.PushModalAsync(new WriteComment());
         }

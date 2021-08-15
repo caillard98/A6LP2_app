@@ -131,6 +131,10 @@ namespace A6LP2_app
             CommentsPage.Comments = Constants.RecipeComments;
             var commentsPage = new CommentsPage();
             commentsPage.UpdateContext();
+            MessagingCenter.Subscribe<WriteComment>(this, "Back", (writeSender) =>
+            {
+                txtComments.Text = Constants.RecipeComments.Count + " comentários";
+            });
             Navigation.PushAsync(commentsPage);
         }
     }

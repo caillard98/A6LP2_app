@@ -23,6 +23,11 @@ namespace A6LP2_app
 
             if(!string.IsNullOrWhiteSpace(_author) && !string.IsNullOrWhiteSpace(_comment))
             {
+                if(_author.ToLowerInvariant() == "admin")
+                {
+                    DisplayAlert("Alerta", "Bonito ein, tentando se passar de administrador? 😏", "Desculpa kkkkk");
+                    return;
+                }
                 SendCommentToDatabase(_author, _comment).Wait();
                 CommentsPage.Comments = Constants.RecipeComments;
                 MessagingCenter.Send(this, "Back");
